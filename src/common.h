@@ -1,4 +1,4 @@
-// Last Update:2017-12-27 23:23:58
+// Last Update:2017-12-28 23:23:19
 /**
  * @file common.h
  * @brief 
@@ -20,6 +20,7 @@
 #include <unistd.h>
 
 #define MAXLINE (1024)
+#define LISTENQ (1024)
 
 #define SA struct sockaddr
 
