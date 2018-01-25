@@ -1,4 +1,4 @@
-// Last Update:2017-12-28 23:23:23
+// Last Update:2018-01-02 10:12:41
 /**
  * @file time_server.c
  * @brief 
@@ -36,7 +36,13 @@ int main(int argc, char *argv[])
         err_sys("listen error");
     for(;;)
     {
+        struct sockaddr_in client;
+        int len = sizeof(client);
         connfd = accept(listenfd, (SA*)NULL, NULL);
+        if(!getpeername(connfd, (SA*)&client, &len))
+        { 
+            printf("connected from %s:%d.\n", inet_ntoa(client.sin_addr), ntohs(client.sin_port));
+        }
         ticks = time(NULL);
         snprintf(buff, sizeof(buff), "%.24s\r\n", ctime(&ticks));
         write(connfd, buff, strlen(buff));
